@@ -1,0 +1,9 @@
+{
+  "name": "cinder-rest",
+  "version": "1.0.0",
+  "description": "A rest client with a web front-end, backed by git",
+  "main": "index.js",
+  "repository": "https://github.com/mindlapse/cinder-rest.git",
+  "author": "mindlapse@gmail.com",
+  "license": "APLv2"
+}
