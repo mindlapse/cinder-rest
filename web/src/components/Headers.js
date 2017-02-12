@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import HeadersPane from './HeadersPane'
-import { addHeader } from '../actions/headerActions'
+import { addHeader, updateHeader, deleteHeader } from '../actions/headerActions'
 
 
 
@@ -14,12 +14,14 @@ export default connect(
     },
     (dispatch) => {
         return {
-            onAdd: () => {
-                console.log("dispatch")
-                dispatch(addHeader(headerId++))
+            onAdd: (id) => {
+                dispatch(addHeader(id))
             },
-            setHeader: (index) => {
-
+            onChange: (e, propName, index) => {
+                dispatch(updateHeader(index, propName, e.target.value))
+            },
+            onDelete: (index) => {
+                dispatch(deleteHeader(index))
             }
         }
     })(HeadersPane)

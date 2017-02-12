@@ -2,15 +2,16 @@ import React, { PropTypes } from 'react';
 import HeaderRow from './HeaderRow';
 import { Button } from 'react-bootstrap';
 
-const HeadersPane = ({headers, onAdd}) => {
+const HeadersPane = ({headers, onAdd, onChange, onDelete}) => {
     // TODO
 
     const headerComps = headers.map(
         (header, index) => {
-            console.log(header);
             return (
                 <HeaderRow key={index} header={header}
-                   onNameChange={}
+                   onNameChange={(e) => onChange(e, 'name', index)}
+                   onValueChange={(e) => onChange(e, 'value', index)}
+                   onDelete={() => onDelete(index)}
                 />
             )
         }
@@ -19,19 +20,17 @@ const HeadersPane = ({headers, onAdd}) => {
     return (
         <div>
             { headerComps }
-
-            <Button onClick={onAdd}>Add</Button>
-            <input type="button" value="Add" onClick={onAdd} />
+            <Button onClick={() => {onAdd(headers.length)}}>Add</Button>
         </div>
     )
 };
 
 
-HeadersPres.propTypes = {
+HeadersPane.propTypes = {
     onAdd: PropTypes.func.isRequired
     // onDispatch : PropTypes.func.isRequired
 
 
 }
 
-export default HeadersPres;
+export default HeadersPane;

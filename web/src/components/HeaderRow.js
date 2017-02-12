@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Form, FormGroup, FormControl } from 'react-bootstrap'
+import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
 
 
 class HeaderRow extends Component {
@@ -10,16 +10,20 @@ class HeaderRow extends Component {
             <div>
                 <Form inline>
                     <FormGroup>
-                        <FormControl type="text" placeholder="Header Name"  onChange={this.props.onNameChange}>
-                            {this.props.header.name}
+                        <FormControl type="text" placeholder="Header Name"
+                                     value={this.props.header.name}
+                                     onChange={this.props.onNameChange}>
                         </FormControl>
                     </FormGroup>
                     {' '}
                     <FormGroup>
-                        <FormControl type="text" placeholder="Header Value" onChange={this.props.onValueChange}>
-                            {this.props.header.value}
-                        </FormControl>
+                        <FormControl type="text" placeholder="Header Value"
+                                     value={this.props.header.value}
+                                     onChange={this.props.onValueChange} />
                     </FormGroup>
+                    {' '}
+                    <Button onClick={this.props.onDelete}>x</Button>
+
                 </Form>
             </div>
         )
@@ -28,8 +32,9 @@ class HeaderRow extends Component {
 
 HeaderRow.propTypes = {
     header : PropTypes.object.isRequired,
-    onNameChange : PropTypes.object,
-    onValueChange : PropTypes.object
+    onNameChange : PropTypes.func.isRequired,
+    onValueChange : PropTypes.func.isRequired,
+    onDelete : PropTypes.func.isRequired
 };
 
 

@@ -1,6 +1,6 @@
 
 import { combineReducers } from 'redux'
-import { ADD_HEADER, SET_HEADER } from '../actions/headerActions';
+import { ADD_HEADER, SET_HEADER, UPDATE_HEADER, DELETE_HEADER } from '../actions/headerActions';
 
 
 const reduce = combineReducers({
@@ -9,18 +9,43 @@ const reduce = combineReducers({
 
 
 function headers(headerArray = [], action) {
+    console.log("Received action");
+    console.log(action);
+
+    let newArray;
     switch (action.type) {
         case ADD_HEADER:
-            return [...headerArray, ...[{index : action.index}]];
+            newArray = [...headerArray, ...[{index : action.index, name : "", value : ""}]];
+            break;
+        case UPDATE_HEADER:
+            const newHeader = {
+                ...headerArray[action.index],
+                ...{[action.propName]: action.value}
+            }
+            newArray = setHeader(headerArray, action.index, newHeader);
+            break;
         case SET_HEADER:
-            return [
+            newArray = setHeader(headerArray, action.index, action.header)
+            break;
+        case DELETE_HEADER:
+            newArray = [
                 ...headerArray.slice(0, action.index),
-                action.header,
-                ...headerArray.slice(action.index + 1)
-            ];
+                ...headerArray.slice(action.index+1)
+            ]
+            break
         default:
-            return state;
+            newArray = headerArray;
     }
+    return newArray
+}
+
+
+function setHeader(headerArray, index, header) {
+    return [
+        ...headerArray.slice(0, index),
+        header,
+        ...headerArray.slice(index + 1)
+    ]
 }
 
 export default reduce;
