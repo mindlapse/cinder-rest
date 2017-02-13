@@ -1,12 +1,35 @@
 
 import { combineReducers } from 'redux'
 import { ADD_HEADER, SET_HEADER, UPDATE_HEADER, DELETE_HEADER } from '../actions/headerActions';
-
+import { UPDATE_BODY } from '../actions/bodyActions'
+import { SET_URL, SET_METHOD } from '../actions/urlActions'
 
 const reduce = combineReducers({
-    headers
+    url,
+    headers,
+    body
 });
 
+function url(url = { method : 'POST', url : "" }, action) {
+    switch (action.type) {
+        case SET_URL:
+            return {...url, ...{ url: action.url }}
+        case SET_METHOD:
+            return {...url, ...{ method: action.method }}
+        default:
+            return url
+    }
+}
+
+
+function body(body = "", action) {
+    switch (action.type) {
+        case UPDATE_BODY:
+            return action.body
+        default:
+            return body
+    }
+}
 
 function headers(headerArray = [], action) {
     console.log("Received action");

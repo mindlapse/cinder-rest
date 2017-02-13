@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import Request from './components/Request'
-import logo from './logo.svg';
 import './App.css';
 import reducers from './reducers/reducers'
 
@@ -13,13 +12,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Cinder REST</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-
-        </p>
+          <br />
           <Provider store={store}>
               <Request />
           </Provider>

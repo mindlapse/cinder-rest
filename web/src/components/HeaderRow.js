@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Button, Form, FormGroup, FormControl } from 'react-bootstrap'
 
-
 class HeaderRow extends Component {
 
     render() {

@@ -20,7 +20,7 @@ const HeadersPane = ({headers, onAdd, onChange, onDelete}) => {
     return (
         <div>
             { headerComps }
-            <Button onClick={() => {onAdd(headers.length)}}>Add</Button>
+            <Button onClick={() => {onAdd(headers.length)}}>Add Header</Button>
         </div>
     )
 };
